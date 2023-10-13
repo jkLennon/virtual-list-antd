@@ -1,2 +1,1 @@
-# virtual-list-antd
-antd + react-window 实现虚拟列表
+notice: run `pnpm install clear-module lodash chokidar` while using pnpm.

@@ -2,146 +2,46 @@
  * @Author: lumeifeng
  * @Date: 2023-10-12 11:56:43
  * @LastEditors: lumeifeng
- * @LastEditTime: 2023-10-13 10:28:36
+ * @LastEditTime: 2023-10-13 17:55:55
  * @Description: TODO
  */
+import React from 'react';
+import { Segmented, Space, Switch, Table, Typography } from 'antd';
+import type { TableProps } from 'antd';
 
-import { Table, TableProps } from 'antd';
-import { useEffect, useRef, useState } from 'react';
-import { VariableSizeGrid as Grid } from 'react-window';
-import ResizeObserver from 'rc-resize-observer';
-import classNames from 'classnames';
-const token = {
-  padding: 16,
-  lineWidth: 1,
-  lineType: 'solid',
-  colorSplit: 'rgba(5, 5, 5, 0.06)',
-  colorBgContainer: '#ffffff',
-};
+interface RecordType {
+  [key: string]: any;
+}
 
-const VirtualTable = <RecordType extends object>(
-  props: TableProps<RecordType>
-) => {
-  const { columns, scroll } = props;
-  const [tableWidth, setTableWidth] = useState(0);
+interface PropsType {
+  [key: string]: any;
+}
 
-  const widthColumnCount = columns!.filter(({ width }) => !width).length;
-  const mergedColumns = columns!.map((column) => {
-    if (column.width) {
-      return column;
-    }
+const VirtualTableTemplate = <RecordType extends object>(props: PropsType) => {
+  const [fixed, setFixed] = React.useState(true);
+  const [bordered, setBordered] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
+  const [empty, setEmpty] = React.useState(false);
+  const [count, setCount] = React.useState(100000);
 
-    return {
-      ...column,
-      width: Math.floor(tableWidth / widthColumnCount),
-    };
-  });
-
-  const gridRef = useRef<any>();
-  const [connectObject] = useState<any>(() => {
-    const obj = {};
-    Object.defineProperty(obj, 'scrollLeft', {
-      get: () => {
-        if (gridRef.current) {
-          return gridRef.current?.state?.scrollLeft;
-        }
-        return null;
-      },
-      set: (scrollLeft: number) => {
-        if (gridRef.current) {
-          gridRef.current.scrollTo({ scrollLeft });
-        }
-      },
-    });
-
-    return obj;
-  });
-
-  const resetVirtualGrid = () => {
-    gridRef.current?.resetAfterIndices({
-      columnIndex: 0,
-      shouldForceUpdate: true,
-    });
-  };
-
-  useEffect(() => resetVirtualGrid, [tableWidth]);
-
-  const renderVirtualList = (
-    rawData: object[],
-    { scrollbarSize, ref, onScroll }: any
-  ) => {
-    ref.current = connectObject;
-    const totalHeight = rawData.length * 54;
-
-    return (
-      <Grid
-        ref={gridRef}
-        className="virtual-grid"
-        columnCount={mergedColumns.length}
-        columnWidth={(index: number) => {
-          const { width } = mergedColumns[index];
-          return totalHeight > (scroll?.y as number) &&
-            index === mergedColumns.length - 1
-            ? (width as number) - scrollbarSize - 1
-            : (width as number);
-        }}
-        height={scroll!.y as number}
-        rowCount={rawData.length}
-        rowHeight={() => 54}
-        width={tableWidth}
-        onScroll={({ scrollLeft }: { scrollLeft: number }) => {
-          onScroll({ scrollLeft });
-        }}
-      >
-        {({
-          columnIndex,
-          rowIndex,
-          style,
-        }: {
-          columnIndex: number;
-          rowIndex: number;
-          style: React.CSSProperties;
-        }) => (
-          <div
-            className={classNames('virtual-table-cell', {
-              'virtual-table-cell-last':
-                columnIndex === mergedColumns.length - 1,
-            })}
-            style={{
-              ...style,
-              boxSizing: 'border-box',
-              padding: token.padding,
-              borderBottom: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`,
-              background: token.colorBgContainer,
-            }}
-          >
-            {
-              (rawData[rowIndex] as any)[
-                (mergedColumns as any)[columnIndex].dataIndex
-              ]
-            }
-          </div>
-        )}
-      </Grid>
-    );
-  };
+  const { columns, dataSource, tableOtherOptions = {} } = props;
 
   return (
-    <ResizeObserver
-      onResize={({ width }) => {
-        setTableWidth(width);
-      }}
-    >
-      <Table
-        {...props}
-        className="virtual-table"
-        columns={mergedColumns}
-        pagination={false}
-        components={{
-          body: renderVirtualList as any,
-        }}
-      />
-    </ResizeObserver>
+    <div>
+      <Space direction="vertical" style={{ width: '100%' }}>
+        <Table
+          bordered={bordered}
+          virtual
+          columns={columns}
+          scroll={{ x: 2000, y: 400 }}
+          rowKey="id"
+          dataSource={dataSource}
+          pagination={false}
+          pageSizeOptions={[10, 20, 50, 100000]}
+          {...tableOtherOptions}
+        />
+      </Space>
+    </div>
   );
 };
-export default VirtualTable;
+export default VirtualTableTemplate;

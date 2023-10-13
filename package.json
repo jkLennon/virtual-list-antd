@@ -9,11 +9,10 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "antd": "^5.0.0",
-    "classnames": "2.3.2",
+    "@ant-design/icons": "^5.2.6",
+    "antd": "^5.10.0",
     "eslint": "^8.51.0",
-    "rc-resize-observer": "1.2.0",
-    "react-window": "1.8.8",
+    "loadsh": "^0.0.4",
     "umi": "^4.0.42"
   },
   "devDependencies": {

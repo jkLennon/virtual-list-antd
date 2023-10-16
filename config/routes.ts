@@ -2,16 +2,10 @@
  * @Author: lumeifeng
  * @Date: 2023-10-12 10:55:46
  * @LastEditors: lumeifeng
- * @LastEditTime: 2023-10-13 17:03:35
+ * @LastEditTime: 2023-10-16 10:19:37
  * @Description: 路由列表
  */
 export default [
-  {
-    // template
-    path: '/',
-    component: '@/pages/template/list',
-    layout: false,
-  },
   {
     name: '模版demo',
     path: '/template',
@@ -22,21 +16,21 @@ export default [
         component: '@/pages/template/demo',
         layout: false,
       },
+      {
+        path: '/template/list',
+        component: '@/pages/template/list',
+        layout: false,
+      },
     ],
   },
   {
     name: '列表demo',
-    path: '/demo',
+    path: '/',
     layout: false,
     routes: [
       {
-        path: '/demo/list1',
-        component: '@/pages/list/demo',
-        layout: false,
-      },
-      {
-        path: '/demo/list2',
-        component: '@/pages/list/demo2',
+        path: '/list',
+        component: '@/pages/list',
         layout: false,
       },
     ],

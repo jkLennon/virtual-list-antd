@@ -2,21 +2,21 @@
  * @Author: lumeifeng
  * @Date: 2023-10-12 10:58:09
  * @LastEditors: lumeifeng
- * @LastEditTime: 2023-10-13 15:05:37
+ * @LastEditTime: 2023-10-16 10:38:03
  * @Description: 虚拟列表-demo1
  */
-import VirtualTable from '../components/VirtualTable';
 import { useEffect, useState } from 'react';
-import { getData } from '../utils';
 import { Space, TableProps, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import styles from './index.less';
+import VirtualTableTemplate from '../VirtualTable';
+import { getData } from '@/pages/utils';
 
 interface RecordType {
   [key: string]: any;
 }
 
-const ListDemo = () => {
+const ListDemoThree = () => {
   const [dataSource, setDataSource] = useState<any[]>([]);
   const equipmentAttrsColumns: TableProps<RecordType>['columns'] = [
     {
@@ -117,32 +117,9 @@ const ListDemo = () => {
 
   return (
     <div className={styles.listIndexPage}>
-      <div>
-        <h2>虚拟列表-demo1</h2>
-      </div>
-      <div>
-        <span>1、自定义内容渲染</span>
-        <VirtualTable
-          rowKey={'id'}
-          columns={equipmentAttrsColumns}
-          dataSource={dataSource}
-          bordered
-          scroll={{ y: 300, x: '100vw' }}
-        />
-      </div>
-      <div style={{ marginTop: 100 }} className={styles.demo2}>
-        <span>2、全部数据垂直居中显示。</span>
-        <VirtualTable
-          rowKey={'id'}
-          columns={equipmentAttrsColumns}
-          dataSource={dataSource}
-          bordered
-          scroll={{ y: 300, x: '100vw' }}
-        />
-      </div>
-      <div style={{ marginTop: 100 }} className={styles.demo2}>
-        <span>3、分页显示</span>
-        <VirtualTable
+      <h3>分页显示</h3>
+      <div style={{ marginTop: 30 }} className={styles.demo2}>
+        <VirtualTableTemplate
           rowKey={'id'}
           columns={equipmentAttrsColumns}
           dataSource={dataSource}
@@ -158,4 +135,5 @@ const ListDemo = () => {
     </div>
   );
 };
-export default ListDemo;
+
+export default ListDemoThree;

@@ -12,7 +12,7 @@
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.10.0",
     "eslint": "^8.51.0",
-    "loadsh": "^0.0.4",
+    "lodash": "^4.17.21",
     "umi": "^4.0.42"
   },
   "devDependencies": {

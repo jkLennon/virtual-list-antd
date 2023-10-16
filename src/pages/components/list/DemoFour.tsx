@@ -2,7 +2,7 @@
  * @Author: lumeifeng
  * @Date: 2023-10-12 10:58:09
  * @LastEditors: lumeifeng
- * @LastEditTime: 2023-10-16 17:34:13
+ * @LastEditTime: 2023-10-16 18:42:29
  * @Description: 树形数据展开和收起
  */
 import { useEffect, useRef, useState } from 'react';
@@ -53,7 +53,7 @@ const ListDemoFour = () => {
         },
       },
       {
-        title: '',
+        title: '基本信息',
         dataIndex: 'workshopName',
         onCell: (record: any = {}) => {
           return judgeItemColSpan(record, { type: 'workshopName' });
@@ -582,6 +582,7 @@ const ListDemoFour = () => {
       <div>
         <ul>
           <li>测试数据一共27000，三层数据，每层30。30 * 30 * 30 = 27000</li>
+          <li>一次性展示全部数据</li>
           <li>
             当数据收起/展开，table会重新渲染。如果不使用虚拟列表，table数据超过2000个时有明显的显示卡顿
           </li>

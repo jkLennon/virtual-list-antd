@@ -1,0 +1,45 @@
+{
+  "name": "@umijs/electron-template",
+  "version": "1.0.2",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@umijs/max": "^4.0.86",
+    "antd": "^5.10.0",
+    "classnames": "^2.3.2",
+    "eslint": "^8.51.0",
+    "lodash": "^4.17.21",
+    "mogud": "^5.3.14",
+    "rc-resize-observer": "^1.3.1",
+    "react-window": "^1.8.9",
+    "umi": "^4.0.42"
+  },
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.3",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@umijs/plugin-electron": "^0.2.0",
+    "electron": "23.1.1",
+    "typescript": "^4.1.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "files": [
+    "src/**/*",
+    "tsconfig.json",
+    ".npmrc",
+    ".gitignore",
+    "README.md",
+    ".umirc.ts",
+    "package.json",
+    "typings.d.ts"
+  ]
+}

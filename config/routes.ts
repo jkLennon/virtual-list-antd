@@ -2,7 +2,7 @@
  * @Author: lumeifeng
  * @Date: 2023-10-12 10:55:46
  * @LastEditors: lumeifeng
- * @LastEditTime: 2023-10-17 11:47:55
+ * @LastEditTime: 2023-10-17 14:30:26
  * @Description: 路由列表
  */
 export default [
@@ -11,11 +11,6 @@ export default [
     path: '/template',
     layout: false,
     routes: [
-      {
-        path: '/template/demo',
-        component: '@/pages/template/demo',
-        layout: false,
-      },
       {
         path: '/template/list',
         component: '@/pages/template/list',

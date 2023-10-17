@@ -2,17 +2,17 @@
  * @Author: lumeifeng
  * @Date: 2023-10-12 11:56:43
  * @LastEditors: lumeifeng
- * @LastEditTime: 2023-10-16 18:04:30
+ * @LastEditTime: 2023-10-17 11:58:12
  * @Description: 模版页面
  */
 import React from 'react';
-import { Segmented, Space, Switch, Table, Typography } from 'antd';
+import { Space, Switch } from 'antd';
 import type { TableProps } from 'antd';
-import ListDemoOne from '../components/list/DemoOne';
-import ListDemoTwo from '../components/list/DemoTwo';
-import ListDemoThree from '../components/list/DemoThree';
-import ListDemoFour from '../components/list/DemoFour';
-import ListDemoFive from '../components/list/DemoFive';
+import ListDemoOne from '../components/demo/DemoOne';
+import ListDemoTwo from '../components/demo/DemoTwo';
+import ListDemoThree from '../components/demo/DemoThree';
+import ListDemoFour from '../components/demo/DemoFour';
+import ListDemoFive from '../components/demo/DemoFive';
 
 interface RecordType {
   id: number;
@@ -25,11 +25,11 @@ interface RecordType {
 }
 
 const List = <RecordType extends object>(props: TableProps<RecordType>) => {
-  const [demoOne, setDemoOne] = React.useState(false);
+  const [demoOne, setDemoOne] = React.useState(true);
   const [demoTwo, setDemoTwo] = React.useState(false);
   const [demoThree, setDemoThree] = React.useState(false);
   const [demoFour, setDemoFour] = React.useState(false);
-  const [demoFive, setDemoFive] = React.useState(true);
+  const [demoFive, setDemoFive] = React.useState(false);
   return (
     <div style={{ padding: 30 }}>
       <Space direction="vertical" style={{ width: '100%' }}>
@@ -55,8 +55,8 @@ const List = <RecordType extends object>(props: TableProps<RecordType>) => {
           <Switch
             checked={demoFour}
             onChange={() => setDemoFour(!demoFour)}
-            checkedChildren="单机能效"
-            unCheckedChildren="单机能效"
+            checkedChildren="树形数据"
+            unCheckedChildren="树形数据"
           />
           <Switch
             checked={demoFive}

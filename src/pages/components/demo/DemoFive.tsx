@@ -78,7 +78,6 @@ const ListDemoFive: React.FC = () => {
   const save = async (key: React.Key) => {
     try {
       const row = (await form.validateFields()) as Item;
-      console.log('row0000', row);
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
@@ -169,6 +168,7 @@ const ListDemoFive: React.FC = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={false}
+          scroll={{ y: 300 }}
           // pagination={{
           //   onChange: cancel,
           // }}
